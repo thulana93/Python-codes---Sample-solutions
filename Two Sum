@@ -1,0 +1,36 @@
+'''Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1]'''
+
+# Python code
+
+from itertools import combinations
+
+class Solution:
+    def twoSum(self, nums, target):
+        self.nums = nums
+        self.target = target
+        a = list(combinations(nums,2))
+        
+        lst=[]
+        for i in a:
+            I=list(i)
+            if sum(I)==target and I[0]==I[1]:
+                if I[0] in nums:
+                    lst.append(nums.index(I[0]))
+                    nums[nums.index(I[0])] = 'O'
+                    if I[1] in nums:
+                        lst.append(nums.index(I[1]))
+            
+            elif sum(I)==target and I[0]!=I[1]:
+                for j in I:
+                    Index = nums.index(j)
+                    lst.append(Index)                 
+        print(lst)
+
+obj=Solution()
+TwoSum=obj.twoSum([1, 3, 3], 6)
